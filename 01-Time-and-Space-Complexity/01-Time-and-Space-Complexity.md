@@ -1,6 +1,6 @@
 # Time & Space Complexity
 
-> **Purpose:** Revision notes  
+> **Purpose:** Interview revision notes  
 > **Goal:** Quickly recall the concepts, rules, and common patterns without going into textbook-level detail.
 
 ---
@@ -28,9 +28,11 @@ Therefore, we analyze how the **number of operations grows as `n` increases**.
 
 ### Example
 
+```cpp
 for (int i = 0; i < n; i++) {
     cout << i;
 }
+```
 
 The loop executes `n` times.
 
@@ -46,11 +48,13 @@ The loop executes `n` times.
 
 ### Example — O(1)
 
+```cpp
 int sum = 0;
 
 for (int i = 0; i < n; i++) {
     sum += i;
 }
+```
 
 Only a fixed number of variables are used.
 
@@ -58,7 +62,9 @@ Only a fixed number of variables are used.
 
 ### Example — O(n)
 
+```cpp
 int arr[n];
+```
 
 Memory grows with `n`.
 
@@ -154,6 +160,7 @@ Average-case complexity is a separate concept.
 
 From generally better scaling to worse scaling:
 
+```text
 O(1)
 O(log n)
 O(√n)
@@ -162,6 +169,7 @@ O(n log n)
 O(n²)
 O(n³)
 O(2ⁿ)
+```
 
 ### Growth order to memorize
 
@@ -177,7 +185,9 @@ The amount of work does not depend on `n`.
 
 ### Example
 
+```cpp
 int x = arr[5];
+```
 
 Accessing a known array index takes constant time.
 
@@ -199,15 +209,19 @@ The input size is repeatedly reduced by a constant factor.
 
 Most commonly:
 
+```text
 n → n/2 → n/4 → n/8 → ... → 1
+```
 
 The number of operations is approximately `log₂(n)`.
 
 ### Example
 
+```cpp
 while (n > 1) {
     n = n / 2;
 }
+```
 
 **Time Complexity: `O(log n)`**
 
@@ -235,9 +249,11 @@ An algorithm performs work up to `√n`.
 
 Checking whether a number is prime:
 
+```cpp
 for (int i = 2; i * i <= n; i++) {
     // check divisibility
 }
+```
 
 The loop runs approximately `√n` times.
 
@@ -259,9 +275,11 @@ Work grows directly with the input size.
 
 ### Example
 
+```cpp
 for (int i = 0; i < n; i++) {
     cout << i;
 }
+```
 
 The loop runs `n` times.
 
@@ -305,11 +323,13 @@ Usually occurs with two nested loops.
 
 ### Example
 
+```cpp
 for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
         // operation
     }
 }
+```
 
 Total operations:
 
@@ -337,6 +357,7 @@ Usually occurs with three nested loops.
 
 ### Example
 
+```cpp
 for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
         for (int k = 0; k < n; k++) {
@@ -344,6 +365,7 @@ for (int i = 0; i < n; i++) {
         }
     }
 }
+```
 
 Total:
 
@@ -361,12 +383,14 @@ The amount of work grows exponentially with `n`.
 
 A classic example is naive recursive Fibonacci:
 
+```cpp
 int fib(int n) {
     if (n <= 1)
         return n;
 
     return fib(n - 1) + fib(n - 2);
 }
+```
 
 The recursion creates many repeated calls.
 
@@ -374,9 +398,11 @@ The recursion creates many repeated calls.
 
 ### Why is it dangerous?
 
+```text
 2¹⁰ ≈ 1 thousand
 2²⁰ ≈ 1 million
 2³⁰ ≈ 1 billion
+```
 
 Exponential algorithms become impractical very quickly.
 
@@ -386,6 +412,7 @@ Exponential algorithms become impractical very quickly.
 
 Consider:
 
+```cpp
 for (int i = 0; i < n; i++) {
     // operation
 }
@@ -393,6 +420,7 @@ for (int i = 0; i < n; i++) {
 for (int i = 0; i < n; i++) {
     // operation
 }
+```
 
 Total:
 
@@ -404,10 +432,12 @@ Therefore:
 
 ### Examples
 
+```text
 O(5n)      → O(n)
 O(100n)    → O(n)
 O(3n²)     → O(n²)
 O(50n³)    → O(n³)
+```
 
 ### Rule
 
@@ -429,11 +459,13 @@ Therefore:
 
 ### Examples
 
+```text
 O(n² + n)          → O(n²)
 O(n³ + n² + n)     → O(n³)
 O(n + log n)       → O(n)
 O(n log n + n)     → O(n log n)
 O(2ⁿ + n²)         → O(2ⁿ)
+```
 
 ### Rule
 
@@ -447,6 +479,7 @@ O(2ⁿ + n²)         → O(2ⁿ)
 
 Complexities are added.
 
+```cpp
 for (...) {
     // O(n)
 }
@@ -454,6 +487,7 @@ for (...) {
 for (...) {
     // O(n)
 }
+```
 
 Total:
 
@@ -463,10 +497,12 @@ Total:
 
 Complexities are multiplied.
 
+```cpp
 for (...) {          // O(n)
     for (...) {      // O(n)
     }
 }
+```
 
 Total:
 
@@ -484,11 +520,13 @@ Total:
 
 Do not blindly assume every nested loop is `O(n²)`.
 
+```cpp
 for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
         // operation
     }
 }
+```
 
 Complexity:
 
@@ -508,6 +546,7 @@ Always identify the actual loop bounds.
 
 Example:
 
+```cpp
 for (int i = 0; i < n; i++) {
     // O(n)
 }
@@ -515,6 +554,7 @@ for (int i = 0; i < n; i++) {
 for (int i = 1; i < n; i *= 2) {
     // O(log n)
 }
+```
 
 Total:
 
@@ -569,12 +609,14 @@ When analyzing recursive algorithms, consider:
 
 ### Example — One Recursive Call
 
+```cpp
 void func(int n) {
     if (n <= 1)
         return;
 
     func(n / 2);
 }
+```
 
 Each call reduces `n` by half.
 
@@ -586,8 +628,10 @@ Number of levels:
 
 ### Example — Two Recursive Calls
 
+```cpp
 func(n - 1);
 func(n - 2);
+```
 
 This creates a branching recursion tree.
 
@@ -603,12 +647,14 @@ Recursive calls consume **call stack memory**.
 
 Example:
 
+```cpp
 void func(int n) {
     if (n == 0)
         return;
 
     func(n - 1);
 }
+```
 
 There are `n` active function calls.
 
@@ -626,15 +672,19 @@ Sometimes we use more memory to make an algorithm faster.
 
 ### Without storing results
 
+```text
 Repeated computation
 → More time
 → Less memory
+```
 
 ### With memoization
 
+```text
 Store previously calculated results
 → Less repeated work
 → More memory
+```
 
 This is called a:
 
@@ -679,11 +729,15 @@ Searching for the last element or an absent element:
 
 Do not confuse:
 
+```text
 Best / Average / Worst Case
+```
 
 with:
 
+```text
 O / Ω / Θ
+```
 
 They describe different concepts.
 
@@ -810,11 +864,13 @@ Check for:
 
 ## Trap 1 — Nested loops do not always mean O(n²)
 
+```cpp
 for (int i = 0; i < n; i++) {
     for (int j = 0; j < 100; j++) {
         // operation
     }
 }
+```
 
 Complexity:
 
@@ -826,9 +882,11 @@ Because `100` is constant.
 
 ## Trap 2 — Two loops do not always mean O(n²)
 
+```cpp
 for (int i = 0; i < n; i++) { }
 
 for (int i = 0; i < n; i++) { }
+```
 
 Complexity:
 
@@ -838,8 +896,10 @@ Complexity:
 
 ## Trap 3 — Loop variable does not always increase by 1
 
+```cpp
 for (int i = 1; i < n; i *= 2) {
 }
+```
 
 Complexity:
 
@@ -849,10 +909,12 @@ Complexity:
 
 ## Trap 4 — Input dimensions may be different
 
+```cpp
 for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
     }
 }
+```
 
 Complexity:
 
@@ -872,6 +934,7 @@ Even if no explicit array/vector is created, recursive calls consume stack memor
 
 ## Complexity Order
 
+```text
 O(1)
     ↓
 O(log n)
@@ -887,15 +950,19 @@ O(n²)
 O(n³)
     ↓
 O(2ⁿ)
+```
 
 ## Asymptotic Notation
 
+```text
 O      → Upper Bound
 Ω      → Lower Bound
 Θ      → Tight Bound
+```
 
 ## Core Rules
 
+```text
 Sequential operations → Add
 
 Nested operations → Multiply
@@ -917,9 +984,11 @@ Two n-sized nested loops
 
 Three n-sized nested loops
 → O(n³)
+```
 
 ## Most Important Examples
 
+```text
 Array access             → O(1)
 
 Linear Search            → O(n)
@@ -935,6 +1004,7 @@ Bubble Sort              → O(n²)
 Selection Sort           → O(n²)
 
 Naive Fibonacci          → O(2ⁿ)
+```
 
 ---
 
